@@ -1,0 +1,41 @@
+﻿body {
+	font-family: sans-serif;
+}
+
+.spittleList h1 {
+	font-size: 20pt;
+}
+
+.spittleList ul {
+	list-style: none;
+	margin-left: 0px;
+	padding-left: 0px;
+} 
+
+.spittleList ul li:first-child {
+	border-top: 0px;
+} 
+
+.spittleList ul li {
+	font-size: 14pt;
+	border-top: 1px solid #cccccc;
+	padding-top: 12px;
+	padding-left: 20px;
+} 
+
+.spittleTime {
+	font-size: 10pt;
+	padding-top: 12px;
+}
+
+.spittleLocation {
+	font-size: 8pt;
+}
+
+.spittleForm h1 {
+	font-size: 16pt;
+}
+
+span.error{
+	color: red;	
+}
