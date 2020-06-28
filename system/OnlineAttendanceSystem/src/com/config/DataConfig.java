@@ -30,7 +30,7 @@ public class DataConfig {
 		ds.setUrl(
 				"jdbc:mysql://localhost:3306/OnlineAttendanceSystem?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&amp;");// v1.1
 		ds.setUsername("root");
-		ds.setPassword("root");
+		ds.setPassword("123456");
 		return ds;
 	}
 

@@ -71,5 +71,10 @@ public interface DepartmentRepository {
 	 * @return boolean
 	 */
 	boolean findAllLower(long id, long upper );
+	/**
+	 * 删除此节点以及所有子节点
+	 * 
+	 */
+	public void deletAllLower(long id) ;
 	
 }
