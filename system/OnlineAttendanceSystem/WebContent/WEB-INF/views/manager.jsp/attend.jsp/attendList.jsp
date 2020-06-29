@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -50,7 +49,6 @@ laydate.render({
   elem: '#test1' //指定元素
 });
 </script>
-
 		<br/><br/>
 		<br />结束日期:<br /><br>
 <input type="text" class="demo-input" id="test2" name ="edate" placeholder="请选择日期">
