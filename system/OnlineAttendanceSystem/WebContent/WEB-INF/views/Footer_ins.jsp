@@ -10,7 +10,7 @@
 <body>
 	<div class="col align-self-end" style="bottom: 0;">
 		<h6 align="center">
-			<em><strong>@Copy Right 西北工业大学2017级企业级应用开发小组</strong></em>
+			<em><strong>@Copy Right 西北工业大学2017级SSF开发小组</strong></em>
 		</h6>
 		<br>
 	</div>
