@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="ClientTag" prefix="client"%>
 <%@ page session="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,42 +34,34 @@
 	</ul>
 	<center>
 		<h1>
-
-
-			考勤<br />
+                       考勤<br />
 		</h1>
 		<c:if test="${empty sessionScope.member }">
 			<a href="<c:url value="/member/test" />">获取test session</a>
 			<br />
 		</c:if>
-		<a href="<c:url value="/member" />">返回首页</a>
+		
 		<c:if
 			test="${not empty sessionScope.member && not empty sessionScope.member.id}">
-			<div style="width: 40%">
-				<table class="table">
-					<thead class="thead-light">
-						<tr>
-							<th scope="col" style='text-align: center;'>打卡日期:</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${paginationSupport.items}" var="attendance">
-							<tr>
-								<th style='text-align: center;'><fmt:formatDate
-										value="${attendance.attendDate}" pattern="yyyy-MM-dd" /></th>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+
+			
+			<div class="calender">
+				<center>
+					<client:Dater attendances="${attendances}" date="${now}" />
+				</center>
 			</div>
-		</c:if>
-		 <jsp:include page="../../page.jsp">
-			<jsp:param name="subTitle" value="member/attendance" /> 
-		</jsp:include>
+			<br/>
+			<a type="button" class="btn btn-info" href="<c:url value="/member/attendance/before" />">上一月</a>
+			<a type="button" class="btn btn-info" href="<c:url value="/member/attendance/next" />">下一月</a>
+			<br/><br/>
+			<a href="<c:url value="/member" />">返回首页</a>
 		
+		</c:if>
+	 
 	</center>
 	<div class="footer">
 		<br /><jsp:include page="../../Footer_ins.jsp"></jsp:include>
 	</div>
 </body>
 </html>
+ 

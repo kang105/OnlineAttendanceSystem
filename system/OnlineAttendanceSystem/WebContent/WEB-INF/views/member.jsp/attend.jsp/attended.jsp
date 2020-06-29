@@ -30,12 +30,13 @@
 				href="<c:url value="/home" />">退出登录</a></li>
 		</ul>
 		<h1>
-			您今天已经打过卡了
+		    打卡失败！</h1>
+		  <h2>
 			<c:if test="${not empty sessionScope.member }">
-    	，<c:out value="${member.userName}" />
-				<br />
+                         尊敬的<c:out value="${member.userName}" />，
 			</c:if>
-		</h1>
+				您今天已经打过卡了。
+		</h2>
 		<a href="<c:url value="/member" />">返回首页</a>
 	</center>
 	<div class="footer">

@@ -44,7 +44,7 @@
 					<br />
 					<br />
 					<br />
-					<input type="submit" value="修改请假类型" />
+					<input class="btn btn-primary" type="submit" value="修改请假类型" />
 				</sf:form>
 			</c:when>
 			<c:otherwise>
@@ -61,7 +61,7 @@
 					<sf:errors path="type" cssClass="error" />
 					<br />
 					<br />
-					<input type="submit" value="添加请假类型" />
+					<input class="btn btn-primary" type="submit" value="添加请假类型" />
 				</sf:form>
 			</c:otherwise>
 		</c:choose>
