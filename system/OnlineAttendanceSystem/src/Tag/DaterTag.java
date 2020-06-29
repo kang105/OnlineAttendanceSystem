@@ -53,7 +53,8 @@ public class DaterTag extends SimpleTagSupport {
 
 		print_writer.print("<br>");
 		print_writer.print("<hr>");
-		print_writer.print("本月打卡情况");
+        print_writer.print(current_year+"年"+current_month+"月的");
+		print_writer.print("打卡情况");
 		print_writer.print("<br>");
 		print_writer.print("<hr>");
 		boolean flag = false;
