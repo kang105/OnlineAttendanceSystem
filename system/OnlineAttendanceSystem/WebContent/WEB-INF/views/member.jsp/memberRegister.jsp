@@ -27,27 +27,30 @@
 			<br />
 			<br />
     
-          用户名:<sf:input path="userName" />
-			<sf:errors path="userName" cssClass="error" />
+          <%-- <sf:input path="userName" />
+			<sf:errors path="userName" cssClass="error" /> --%>
+			
+			 <label for="name">用户名： <input type="text" class="form-control" id="name" name="userName"
+			   placeholder="请输入用户名"> </label>
+			
+			<br />
+	<label for="password">密码：<input type="password" class="form-control" id="password" name="password"
+			   placeholder="请输入密码"> </label>
+			<br />
+			
+	<label for="password">电话：<input type="phone" class="form-control" id="password" name="phone"
+			   placeholder="请输入电话"> </label>
+			<br />
+			<label for="email">邮箱：<input type="email" class="form-control" id="password" name="email"
+			   placeholder="请输入邮箱"> </label>
 			<br />
 			<br />
-	密码:<sf:password path="password" />
-			<sf:errors path="password" cssClass="error" />
+	性别     <sf:select path="sex" items="${sessionScope.sex}" />
 			<br />
 			<br />
-	电话:<sf:input path="phone" />
-			<sf:errors path="phone" cssClass="error" />
-			<br />
-			<br />
-	邮箱:<sf:input path="email" />
-			<sf:errors path="email" cssClass="error" />
-			<br />
-			<br />
-	性别<sf:select path="sex" items="${sessionScope.sex}" />
-			<br />
-			<br />
-
-			<input type="submit" value="注册" />
+<button type="submit" class="btn btn-primary">
+		注册
+		</button>
 		</sf:form>
 
 		<a href="<c:url value="/home" />">返回首页</a>
