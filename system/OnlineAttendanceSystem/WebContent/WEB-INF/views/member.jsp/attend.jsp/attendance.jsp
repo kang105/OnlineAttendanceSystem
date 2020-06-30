@@ -36,13 +36,14 @@
 		<h1>
                        考勤<br />
 		</h1>
+		<a href="<c:url value="/member" />">返回首页</a>
 		<c:if test="${empty sessionScope.member }">
 			<a href="<c:url value="/member/test" />">获取test session</a>
 			<br />
 		</c:if>
 		
 		<c:if
-			test="${not empty sessionScope.member && not empty sessionScope.member.id}">
+			test="${not empty sessionScope.member }">
 
 			
 			<div class="calender">
@@ -54,7 +55,7 @@
 			<a type="button" class="btn btn-info" href="<c:url value="/member/attendance/before" />">上一月</a>
 			<a type="button" class="btn btn-info" href="<c:url value="/member/attendance/next" />">下一月</a>
 			<br/><br/>
-			<a href="<c:url value="/member" />">返回首页</a>
+			
 		
 		</c:if>
 	 

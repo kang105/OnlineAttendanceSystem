@@ -23,21 +23,33 @@
 				<c:out value="${sessionScope.error_1}" />
 			</h2>
 			</c:if>
+			
 		<sf:form method="POST" commandName="manager">
 			<sf:errors path="*" cssClass="error" />
 			<br />
 			<br />
     
-          用户名:<sf:input path="username" />
-			<sf:errors path="username" cssClass="error" />
+<%--      用户名:<sf:input path="username" /> --%>
+<%-- 			<sf:errors path="username" cssClass="error" /> --%>
+<!-- 			<br /> -->
+<!-- 			<br /> -->
+<%-- 	   密码:<sf:password path="password" /> --%>
+<%-- 			<sf:errors path="password" cssClass="error" /> --%>
+<!-- 			<br /> -->
+<!-- 			<br /> -->
+	 	<label for="name">用户名： <input type="text" class="form-control" id="name" name="username"
+			   placeholder="请输入用户名"> </label>
+			<br />
+		<label for="password">密码：<input type="password" class="form-control" id="password" name="password"
+			   placeholder="请输入密码"> </label>
 			<br />
 			<br />
-	密码:<sf:password path="password" />
-			<sf:errors path="password" cssClass="error" />
-			<br />
-			<br />
-
-			<input type="submit" value="注册" />
+	
+		<div style="text-align:center">
+		<button type="submit" class="btn btn-primary">
+		注册
+		</button>
+		</div>
 		</sf:form>
 
 		<a href="<c:url value="/home" />">返回首页</a>

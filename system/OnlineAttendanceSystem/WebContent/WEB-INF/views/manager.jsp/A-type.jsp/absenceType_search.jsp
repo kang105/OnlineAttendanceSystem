@@ -14,11 +14,28 @@
 	<div class="header">
 		<%@ include file="../../Header_ins.jsp"%>
 	</div>
+	<ul class="nav nav-tabs justify-content-center">
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/absenceList_uncheck" />">未审核请假列表</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/absenceList_check" />">已审核请假列表</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				href="<c:url value="/manager/absenceTypeList" />">查看所有请假类型</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/MemberList" />">查看所有员工信息</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/Department" />">查看所有部门信息</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/attend_search_time" />">查询考勤记录</a>
+			<li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/home" />">退出登录</a></li>
+		</ul>
 	<center>
 		<form
 			action="${ pageContext.request.contextPath }/manager/A-Type_search"
 			method="post">
-			<a href="<c:url value="/manager" />">返回首页</a> </br>
+			<a href="<c:url value="/manager/absenceTypeList" />">返回请假类型列表</a>
 			</td> 请假类型：<input name="type" type="text" /><br /> <br /> <input
 				class="btn btn-primary" type="submit" value="查找请假类型"> </br> </br>
 			<a class="btn btn-primary"
