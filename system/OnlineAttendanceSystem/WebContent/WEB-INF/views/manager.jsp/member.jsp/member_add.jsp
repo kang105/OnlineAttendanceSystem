@@ -15,6 +15,23 @@
 	<div class="header">
 		<%@ include file="../../Header_ins.jsp"%>
 	</div>
+	<ul class="nav nav-tabs justify-content-center">
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/absenceList_uncheck" />">未审核请假列表</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/absenceList_check" />">已审核请假列表</a></li>
+			<li class="nav-item"><a class="nav-link "
+				href="<c:url value="/manager/absenceTypeList" />">查看所有请假类型</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				href="<c:url value="/manager/MemberList" />">查看所有员工信息</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/Department" />">查看所有部门信息</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/attend_search_time" />">查询考勤记录</a>
+			<li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/home" />">退出登录</a></li>
+		</ul>
 	<center>
 		<h1>员工添加</h1>
 		<c:if test="${not empty sessionScope.error_1}">
@@ -26,31 +43,36 @@
 			<sf:errors path="*" cssClass="error" />
 			<br />
 			<br />
-    
-          用户名:<sf:input path="userName" />
-			<sf:errors path="userName" cssClass="error" />
-			<br />
-			<br />
-	密码:<sf:password path="password" />
-			<sf:errors path="password" cssClass="error" />
-			<br />
-			<br />
-	电话:<sf:input path="phone" />
-			<sf:errors path="phone" cssClass="error" />
-			<br />
-			<br />
-	邮箱:<sf:input path="email" />
-			<sf:errors path="email" cssClass="error" />
-			<br />
-			<br />
-	性别<sf:select path="sex" items="${sessionScope.sex}" />
+			<a href="<c:url value="/manager/MemberList" />">返回员工信息列表</a>
 			<br />
 			<br />
 
-			<input type="submit" value="添加" />
+			<label for="name">用户名： <input type="text"
+				class="form-control" id="name" name="userName" placeholder="请输入用户名">
+			</label>
+
+			<br />
+			<label for="password">密码：<input type="password"
+				class="form-control" id="password" name="password"
+				placeholder="请输入密码">
+			</label>
+			<br />
+
+			<label for="password">电话：<input type="phone"
+				class="form-control" id="password" name="phone" placeholder="请输入电话">
+			</label>
+			<br />
+			<label for="email">邮箱：<input type="email"
+				class="form-control" id="password" name="email" placeholder="请输入邮箱">
+			</label>
+			<br />
+			<br />
+	性别     <sf:select path="sex" items="${sessionScope.sex}" />
+			<br />
+			<br />
+			<button type="submit" class="btn btn-primary">注册</button>
 		</sf:form>
 
-		<a href="<c:url value="/manager/MemberList" />">返回员工信息列表</a>
 	</center>
 	<div>
 		<br /><jsp:include page="../../Footer_ins.jsp"></jsp:include>

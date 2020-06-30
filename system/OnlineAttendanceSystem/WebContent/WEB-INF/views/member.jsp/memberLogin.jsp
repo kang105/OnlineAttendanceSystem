@@ -21,13 +21,25 @@
 				<c:out value="${sessionScope.error_1}" />
 			</h2>
 			</c:if>
+			
+			
 		<form method="POST">
-			用户名: <input type="text" name="userName" /><br />
-			<br /> 密码:<input type="password" name="password" /><br />
+		    <label for="name">用户名：<br /> <input type="text" class="form-control" id="name" name="userName"
+			   placeholder="请输入用户名"> </label>
+			<br />
+			<label for="password">密码：<input type="password" class="form-control" id="password" name="password"
+			   placeholder="密码"> </label>
 			<br /> <input name="auto" id="auto" type="checkbox" value="1">下次自动登陆<br />
 			<br /> <input name="auto" id="auto" type="hidden" value="false">
-			<input type="submit" value="确定" />
+			<button type="submit" class="btn btn-primary">
+		确定
+		</button>
 		</form>
+		
+		
+		
+		
+		
 		<a href="<c:url value="/home" />">返回首页</a>
 	</center>
 	<div>

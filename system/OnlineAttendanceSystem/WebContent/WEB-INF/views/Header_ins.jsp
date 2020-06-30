@@ -15,7 +15,7 @@
 <body>
 	<div class="col align-self-start">
 		<h1 align="center">
-			<img src="<%=path%>/image/logo.jpg"><em><strong>企业级网上考勤系统</strong></em>
+			<img src="<%=path%>/image/logo.jpg"><em><strong>网上考勤系统</strong></em>
 		</h1>
 		<c:if test="${not empty sessionScope.headerInfo}">
 			<h1 align="center">

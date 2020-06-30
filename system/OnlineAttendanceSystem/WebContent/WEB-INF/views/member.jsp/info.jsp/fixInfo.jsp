@@ -36,7 +36,7 @@
 				<c:out value="${sessionScope.error_1}"></c:out>
 			</h2>
 		</c:if>
-		<a href="<c:url value="/member" />">返回首页</a> <br /> <br />
+		<a href="<c:url value="/member/info" />">返回个人信息</a> <br /> <br />
 		<sf:form method="POST" commandName="member">
 			<div class="form-group">
 				<label>名字</label>

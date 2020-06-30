@@ -6,6 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -29,6 +30,7 @@ import com.db.AttendanceRepository;
 import com.db.DepartmentRepository;
 
 import java.util.Date;
+import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -161,14 +163,14 @@ public class ManagerController {
 	 */
 	@RequestMapping(value = "/A-Type_add", method = GET)
 	public String addATypeView(Model model, HttpSession session) {
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		model.addAttribute(new AbsenceType());
 		return "manager.jsp/A-type.jsp/absenceType_add";
 	}
 
 	@RequestMapping(value = "/A-Type_add", method = POST)
 	public String addAType(@Valid AbsenceType absenceType, Errors errors, HttpSession session) {
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		if (errors.hasErrors()) {
 			return "manager.jsp/A-type.jsp/absenceType_add";
 		} else {
@@ -199,17 +201,17 @@ public class ManagerController {
 	@RequestMapping(value = "/A-Type_modify", method = GET)
 	public String modifyATypeView(Model model, HttpServletRequest request, String id, HttpSession session)
 			throws Exception {
-		session.setAttribute("error_2","");
+		session.setAttribute("error_2", "");
 		model.addAttribute(new AbsenceType());
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		request.setAttribute("modifyAbsenceType", absenceTypeRepository.findOne(id));
 		return "manager.jsp/A-type.jsp/absenceType_add";
 	}
 
 	@RequestMapping(value = "/A-Type_modify", method = POST)
 	public String modifyAType(@Valid AbsenceType absenceType, Errors errors, HttpSession session) {
-		session.setAttribute("error_1","");
-		session.setAttribute("error_2","");
+		session.setAttribute("error_1", "");
+		session.setAttribute("error_2", "");
 		if (errors.hasErrors()) {
 			return "manager.jsp/A-type.jsp/absenceType_add";
 		} else {
@@ -259,7 +261,7 @@ public class ManagerController {
 	@RequestMapping(value = "/MemberList", method = GET)
 	public String memberList(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
 			@RequestParam(value = "pageSize", defaultValue = "3") int pageSize, Model model, HttpSession session) {
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		PaginationSupport<Member> pm = memberRepository.findPage(pageNo, pageSize);
 		model.addAttribute("paginationSupport", pm);
 		return "manager.jsp/member.jsp/memberList";
@@ -342,7 +344,7 @@ public class ManagerController {
 	@RequestMapping(value = "/FixMemberInfo", method = RequestMethod.POST)
 	public String fixMemberInfo_POST(@Valid MemberForm memberForm, HttpSession session,
 			@RequestParam(value = "memberId") int memberId) {
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		Member m = null;
 		m = memberRepository.checkUsername(memberForm.toMember());
 		if (m != null && m.getId() != memberId) {
@@ -379,7 +381,7 @@ public class ManagerController {
 		model.addAttribute(new Member());
 		String[] sex = new String[] { "", "男", "女" };
 		session.setAttribute("sex", sex);
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		return "manager.jsp/member.jsp/member_add";
 	}
 
@@ -390,7 +392,7 @@ public class ManagerController {
 	 */
 	@RequestMapping(value = "/member_add", method = POST)
 	public String addMember(@Valid Member member, Errors errors, Model model, HttpSession session) {
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		if (member.getSex().equals("")) {
 			member.setSex("保密");
 		}
@@ -456,7 +458,7 @@ public class ManagerController {
 	@RequestMapping(value = "/attend_search_time", method = GET)
 	public String searchAttend(Model model, @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize, HttpSession session) {
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		if (session.getAttribute("btime") != null && session.getAttribute("etime") != null) {
 			Date btime = (Date) session.getAttribute("btime");
 			Date etime = (Date) session.getAttribute("etime");
@@ -539,7 +541,7 @@ public class ManagerController {
 	@RequestMapping(value = "/addDepartment", method = RequestMethod.GET)
 	public String addDepartment(HttpSession session, Model model) {
 		session.setAttribute("departments", departmentRepository.findAll());
-		session.setAttribute("error_1","");
+		session.setAttribute("error_1", "");
 		DForm df = new DForm();
 		model.addAttribute(df);
 		return "manager.jsp/department.jsp/departmentAdd";
@@ -648,6 +650,44 @@ public class ManagerController {
 			return "manager.jsp/department.jsp/departmentFixInfo";
 		}
 
+	}
+
+	@RequestMapping(value = "/fixDepartmentTree", method = RequestMethod.POST)
+	public void fixDepartmentTree(@RequestParam(value = "Id") int Id, @RequestParam(value = "newName") String newName,
+			HttpServletResponse response) throws IOException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("{msg :\"");
+		String name = departmentRepository.findOne_BY_Id(Id).getDepartment();
+		if (name.equals(newName)) {
+			sb.append("-1");
+		} else {
+			Department department = departmentRepository.findOne_BY_Id(Id);
+			boolean check = (null == departmentRepository.findOne(newName));
+			if (check == false) {
+				sb.append("0");
+			} else {
+				department.setDepartment(newName);
+				departmentRepository.change(department, Id);
+				sb.append("1");
+			}
+		}
+		sb.append("\",title :\"");
+		sb.append(departmentRepository.findOne_BY_Id(Id).getDepartment());
+		sb.append("\"}");
+		response.getWriter().write(sb.toString());
+	}
+
+	@RequestMapping(value = "/delDepartmentTree", method = RequestMethod.POST)
+	public void delDepartmentTree(@RequestParam(value = "Id") int Id, HttpServletResponse response) throws IOException {
+		StringBuffer sb = new StringBuffer();
+		departmentRepository.deletAllLower(Id);
+		boolean check = (null == departmentRepository.findOne_BY_Id(Id));
+		if (check == true) {
+			sb.append("0");
+		} else {
+			sb.append("1");
+		}
+		response.getWriter().write(sb.toString());
 	}
 
 }

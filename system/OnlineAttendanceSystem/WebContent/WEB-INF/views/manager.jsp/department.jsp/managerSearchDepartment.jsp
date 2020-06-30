@@ -13,6 +13,23 @@
 	<div class="header">
 		<%@ include file="../../Header_ins.jsp"%>
 	</div>
+	<ul class="nav nav-tabs justify-content-center">
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/absenceList_uncheck" />">未审核请假列表</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/absenceList_check" />">已审核请假列表</a></li>
+			<li class="nav-item"><a class="nav-link "
+				href="<c:url value="/manager/absenceTypeList" />">查看所有请假类型</a></li>
+			<li class="nav-item"><a class="nav-link "
+				href="<c:url value="/manager/MemberList" />">查看所有员工信息</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				href="<c:url value="/manager/Department" />">查看所有部门信息</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/manager/attend_search_time" />">查询考勤记录</a>
+			<li>
+			<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/home" />">退出登录</a></li>
+		</ul>
 	<center>
 		<a href="<c:url value="/manager/Department" />">返回部门信息</a>
 		<h1>查询部门结果</h1>

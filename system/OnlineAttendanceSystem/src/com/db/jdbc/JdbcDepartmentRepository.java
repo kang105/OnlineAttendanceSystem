@@ -91,6 +91,13 @@ public class JdbcDepartmentRepository implements DepartmentRepository {
 
 		return department;
 	}
+	
+	public Department changeName(Department department, long id) {
+		jdbc.update(UPDATE_DEPARTMENT + " where id = ?", department.getDepartment(),
+				department.getUpperDepartment().getId(), id);
+
+		return department;
+	}
 
 	@Override
 	public List<Department> findAll() { // v1.0 by ls
@@ -112,6 +119,14 @@ public class JdbcDepartmentRepository implements DepartmentRepository {
 			upper=d.getUpperDepartment().getId();
 		}
 		return true;
+	}
+	//删除此节点以及所有子节点
+	public void deletAllLower(long id) {
+		delect(id);
+		List<Department> all = findAll();
+		for (Department d : all) {
+			if(d.getUpperDepartment().getId() == id) deletAllLower(d.getId());
+		}
 	}
 	
 	@Override

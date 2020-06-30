@@ -117,11 +117,12 @@ public class FormatDepartments {
 		data = "[{";
 		for (DepartmentForm d : backUpDepartmentsForm) {
 			if (d.getId() == upperId) {
+				
 				data += "title:\'";
 				data += d.getDepartment();
 				data += "\',id:";
 				data += d.getId();
-
+		//		if(d.getId() == 1) data += ",disabled: true";
 				data = toJson2(data, upperId);
 
 			}

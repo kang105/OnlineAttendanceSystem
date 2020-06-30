@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -163,10 +164,63 @@ public class MemberController {
 	@RequestMapping(value = "/attendance", method = GET)
 	public String attendance(Model model, @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
 			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize, HttpSession session) {
+		Date now = new Date();
+		model.addAttribute("now", now);
+		session.setAttribute("now",now);
 		Member member = (Member) session.getAttribute("member");
 		Long memberID = member.getId();
+		model.addAttribute("attendances", attendanceRepository.findByMonth(memberID, now)); // 获取日历tag参数
 		model.addAttribute("paginationSupport", attendanceRepository.findPage(pageNo, pageSize, memberID));
+		
 		session.setAttribute("headerInfo", member.getUserName() + "的考勤");
+		return "member.jsp/attend.jsp/attendance";
+	}
+	
+	/**
+	 * 上一个月的打卡信息
+	 * 
+	 * @param
+	 * @return "member.jsp/attend.jsp/attendance"
+	 */
+	@RequestMapping(value = "/attendance/before", method = GET)
+	public String attendanceBefore(Model model, HttpSession session) {
+		Date now = (Date) session.getAttribute("now");//获取当前月份
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTime(now);//设置为当前时间
+		calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)-1);//设置为上一个月
+		now=calendar.getTime();
+		
+		model.addAttribute("now", now);
+		session.setAttribute("now",now);
+		Member member = (Member) session.getAttribute("member");
+		Long memberID = member.getId();
+		model.addAttribute("attendances", attendanceRepository.findByMonth(memberID, now)); // 获取日历tag参数
+		session.setAttribute("headerInfo", member.getUserName() + "的考勤");
+
+		return "member.jsp/attend.jsp/attendance";
+	}
+	
+	/**
+	 * 下一个月的打卡信息
+	 * 
+	 * @param
+	 * @return "member.jsp/attend.jsp/attendance"
+	 */
+	@RequestMapping(value = "/attendance/next", method = GET)
+	public String attendanceNext(Model model, HttpSession session) {
+		Date now = (Date) session.getAttribute("now");//获取当前月份
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTime(now);//设置为当前时间
+		calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+1);//设置为上一个月
+		now=calendar.getTime();
+		
+		model.addAttribute("now", now);
+		session.setAttribute("now",now);
+		Member member = (Member) session.getAttribute("member");
+		Long memberID = member.getId();
+		model.addAttribute("attendances", attendanceRepository.findByMonth(memberID, now)); // 获取日历tag参数
+		session.setAttribute("headerInfo", member.getUserName() + "的考勤");
+
 		return "member.jsp/attend.jsp/attendance";
 	}
 

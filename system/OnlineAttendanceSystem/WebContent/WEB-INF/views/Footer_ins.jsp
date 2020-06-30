@@ -10,11 +10,11 @@
 <body>
 	<div class="col align-self-end" style="bottom: 0;">
 		<h6 align="center">
-			<em><strong>@Copy Right 西北工业大学2017级企业级应用开发小组</strong></em>
+			<em><strong>@Copy Right 西北工业大学2017级SSF开发小组</strong></em>
 		</h6>
 		<br>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
 	<script

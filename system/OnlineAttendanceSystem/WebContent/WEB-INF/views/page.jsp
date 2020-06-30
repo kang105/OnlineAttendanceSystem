@@ -9,21 +9,21 @@
  <link rel="stylesheet" 
           type="text/css" 
           href="<c:url value="/resources/css/bootstrap.min.css" />" >
+          	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
  <c:set var="page" value="${param.subTitle}" /> 
   每页${paginationSupport.pageSize}条请假记录，
 	    第${paginationSupport.currentPageNo}/${paginationSupport.totalPageCount}页,共${paginationSupport.totalCount}条请假记录
 	<br />
-	<c:if test="${paginationSupport.previousPage}">
-		<a
-			href="<c:url value="/${page}?pageNo=${paginationSupport.currentPageNo-1}" />">上一页</a>
-	</c:if>
-	<c:if test="${paginationSupport.nextPage}">
-		<a
-			href="<c:url value="/${page}?pageNo=${paginationSupport.currentPageNo+1}" />">下一页</a>
-	</c:if>
+
 	<br />
-	
+<ul class="pagination">
+	<c:forEach var="i" begin="1" end="${paginationSupport.totalPageCount}"  step="1">
+    <li><a href="<c:url value="/${page}?pageNo=${i}" />">${i}</a></li>
+</c:forEach>
+    </ul>
   </body>
 </html>
